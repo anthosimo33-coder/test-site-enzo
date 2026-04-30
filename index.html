@@ -15,7 +15,7 @@ html{scroll-behavior:smooth}
 body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:500;background:var(--bg);color:var(--white);line-height:1.6;overflow-x:hidden}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 4vw;height:78px;background:rgba(27,28,32,0.97);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:32px;padding:0 4vw;height:78px;background:rgba(27,28,32,0.97);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
 .nav-logo img{height:56px;width:auto}
 .nav-links{display:flex;gap:22px;list-style:none;flex-wrap:nowrap}
 .nav-links a{color:var(--white);text-decoration:none;font-size:10px;letter-spacing:0.13em;text-transform:uppercase;opacity:.7;transition:opacity .2s,color .2s;white-space:nowrap}
@@ -203,17 +203,16 @@ footer{background:var(--bg);padding:72px 6vw 36px;border-top:1px solid var(--bor
 .reveal.visible{opacity:1;transform:none}
 
 /* RESPONSIVE */
-@media(max-width:1200px){
-  .nav-links{gap:18px}
-  .nav-links a{font-size:9.5px;letter-spacing:.11em}
-}
-@media(max-width:1100px){
+/* Hamburger menu kicks in early enough to avoid lang-switcher / nav-links collision
+   and to give iPad (any orientation) a clean mobile menu */
+@media(max-width:1280px){
   nav .nav-links,nav .nav-right .lang-switcher,nav .nav-right .nav-cta{display:none}
   .hamburger{display:flex}
 }
-@media(max-width:1000px){
+@media(max-width:1100px){
   .objectifs-grid,.logistique-grid{grid-template-columns:repeat(2,1fr)}
 }
+/* iPad portrait & landscape phones */
 @media(max-width:900px){
   section{padding:90px 6vw}
   .decouvrir-grid,.securite-grid,.valeurs-new,.resp-new,.contact-grid{grid-template-columns:1fr;gap:48px}
@@ -226,7 +225,14 @@ footer{background:var(--bg);padding:72px 6vw 36px;border-top:1px solid var(--bor
   .labo-section{padding:90px 0}
   .hero-actions{flex-direction:column;align-items:flex-start}
   .hero-actions a{width:100%;max-width:320px;text-align:center}
+  .mobile-menu .lang-btn{padding:10px 14px;font-size:14px}
 }
+/* iPad portrait & big phones */
+@media(max-width:768px){
+  .london-banner{height:45vh;min-height:320px}
+  .hero-title{font-size:clamp(30px,5.5vw,46px)}
+}
+/* Phones */
 @media(max-width:600px){
   nav{padding:0 5vw;height:68px}
   .mobile-menu{top:68px;padding:32px 5vw 48px}
@@ -245,6 +251,17 @@ footer{background:var(--bg);padding:72px 6vw 36px;border-top:1px solid var(--bor
   .short-section .text-col p{font-size:18px}
   .v-text,.objectif-card p,.resp-item p,.logistique-item p{font-size:16px}
   .decouvrir-grid,.valeurs-new,.resp-new,.securite-grid{gap:36px}
+  .london-banner{height:38vh;min-height:240px}
+  .footer-brand img{height:46px}
+  .nav-links a,.mobile-nav-links a{font-size:14px}
+}
+/* Small phones (≤380px) */
+@media(max-width:380px){
+  nav{padding:0 4vw}
+  .nav-logo img{height:38px}
+  .section-title{font-size:24px}
+  .hero-title{font-size:30px}
+  .london-banner{height:32vh;min-height:200px}
 }
 </style>
 </head>
@@ -262,7 +279,7 @@ footer{background:var(--bg);padding:72px 6vw 36px;border-top:1px solid var(--bor
     <li><a href="#logistique" data-i18n="nav_logistics">Logistique</a></li>
     <li><a href="#stockage" data-i18n="nav_storage">Stockage</a></li>
     <li><a href="#livraisons" data-i18n="nav_deliveries">Livraisons</a></li>
-    <li><a href="#laboratoire" data-i18n="nav_laboratory">Laboratoire</a></li>
+    <li><a href="#laboratoire" data-i18n="nav_laboratory">Qualité</a></li>
     <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
   </ul>
   <div class="nav-right">
@@ -293,7 +310,7 @@ footer{background:var(--bg);padding:72px 6vw 36px;border-top:1px solid var(--bor
     <li><a href="#logistique" onclick="closeMenu()" data-i18n="nav_logistics">Logistique</a></li>
     <li><a href="#stockage" onclick="closeMenu()" data-i18n="nav_storage">Stockage</a></li>
     <li><a href="#livraisons" onclick="closeMenu()" data-i18n="nav_deliveries">Livraisons</a></li>
-    <li><a href="#laboratoire" onclick="closeMenu()" data-i18n="nav_laboratory">Laboratoire</a></li>
+    <li><a href="#laboratoire" onclick="closeMenu()" data-i18n="nav_laboratory">Qualité</a></li>
     <li><a href="#contact" onclick="closeMenu()" data-i18n="nav_contact">Contact</a></li>
   </ul>
   <div class="mobile-menu-lang">
@@ -483,7 +500,7 @@ footer{background:var(--bg);padding:72px 6vw 36px;border-top:1px solid var(--bor
     <div class="logistique-grid reveal">
       <div class="logistique-item"><span class="num">01</span><p data-i18n="s6_l1">Volume réduit ou important selon le besoin du client.</p></div>
       <div class="logistique-item"><span class="num">02</span><p data-i18n="s6_l2">Différents types de conditionnements.</p></div>
-      <div class="logistique-item"><span class="num">03</span><p data-i18n="s6_l3">Palettisation (80-120 / 100-120, Chep, LPR, Europe).</p></div>
+      <div class="logistique-item"><span class="num">03</span><p data-i18n="s6_l3">Palettisation (80x120) et (100x120), Chep, LPR, Europe.</p></div>
       <div class="logistique-item"><span class="num">04</span><p data-i18n="s6_l4">Stockage avec température dirigée selon le produit.</p></div>
       <div class="logistique-item"><span class="num">05</span><p data-i18n="s6_l5">Des relations durables avec nos fournisseurs et nos clients.</p></div>
       <div class="logistique-item"><span class="num">06</span><p data-i18n="s6_l6">Une équipe capable de s'adapter à toutes demandes spéciales (volume, conditionnement, palettisation, groupage, stockage…).</p></div>
@@ -675,7 +692,7 @@ function closeMenu(){
 // ── TRADUCTIONS ──
 const T = {
 fr:{
-  nav_about:"Découvrir", nav_engagement:"Engagement", nav_storage:"Stockage", nav_deliveries:"Livraisons", nav_laboratory:"Laboratoire", nav_ambition:"Ambition", nav_values:"Valeurs", nav_security:"Sécurité", nav_logistics:"Logistique", nav_contact:"Contact", nav_cta:"Nous Contacter",
+  nav_about:"Découvrir", nav_engagement:"Engagement", nav_storage:"Stockage", nav_deliveries:"Livraisons", nav_laboratory:"Qualité", nav_ambition:"Ambition", nav_values:"Valeurs", nav_security:"Sécurité", nav_logistics:"Logistique", nav_contact:"Contact", nav_cta:"Nous Contacter",
   hero_title:"Intermédiation commerciale<br/>de <em>Produits Agro-Alimentaires</em>",
   hero_sub:"Solutions globales et transversales de développement commercial. Le meilleur niveau de productivité et de fiabilité sur l'espace européen, l'Afrique du Nord et les Émirats Arabes Unis.",
   hero_btn1:"Découvrir Westerfield", hero_btn2:"Nous Contacter",
@@ -710,7 +727,7 @@ fr:{
   s6_tag:"Logistique", s6_title:"Notre <em>Logistique</em>", s6_intro:"Une capacité à s'adapter aux exigences clients.",
   s6_l1:"Volume réduit ou important selon le besoin du client.",
   s6_l2:"Différents types de conditionnements.",
-  s6_l3:"Palettisation (80-120 / 100-120, Chep, LPR, Europe).",
+  s6_l3:"Palettisation (80x120) et (100x120), Chep, LPR, Europe.",
   s6_l4:"Stockage avec température dirigée selon le produit.",
   s6_l5:"Des relations durables avec nos fournisseurs et nos clients.",
   s6_l6:"Une équipe capable de s'adapter à toutes demandes spéciales (volume, conditionnement, palettisation, groupage, stockage…).",
@@ -735,7 +752,7 @@ fr:{
   fc1:"À propos", fc2:"Nos Marchés", fc3:"Valeurs", fc4:"Références", fc5:"Contact",
 },
 en:{
-  nav_about:"About", nav_engagement:"Commitment", nav_storage:"Storage", nav_deliveries:"Deliveries", nav_laboratory:"Laboratory", nav_ambition:"Ambition", nav_values:"Values", nav_security:"Safety", nav_logistics:"Logistics", nav_contact:"Contact", nav_cta:"Contact Us",
+  nav_about:"About", nav_engagement:"Commitment", nav_storage:"Storage", nav_deliveries:"Deliveries", nav_laboratory:"Quality", nav_ambition:"Ambition", nav_values:"Values", nav_security:"Safety", nav_logistics:"Logistics", nav_contact:"Contact", nav_cta:"Contact Us",
   hero_title:"Commercial intermediation<br/>of <em>Agri-Food Products</em>",
   hero_sub:"Global and transversal commercial development solutions. The best level of productivity and reliability across Europe, North Africa and the United Arab Emirates.",
   hero_btn1:"Discover Westerfield", hero_btn2:"Contact Us",
@@ -770,7 +787,7 @@ en:{
   s6_tag:"Logistics", s6_title:"Our <em>Logistics</em>", s6_intro:"An ability to adapt to our clients' requirements.",
   s6_l1:"Small or large volumes according to client needs.",
   s6_l2:"Various packaging formats.",
-  s6_l3:"Palletisation (80-120 / 100-120, Chep, LPR, Europe).",
+  s6_l3:"Palletisation (80x120) and (100x120), Chep, LPR, Europe.",
   s6_l4:"Storage with temperature control tailored to each product.",
   s6_l5:"Long-term relationships with our suppliers and clients.",
   s6_l6:"A team able to adapt to any special request (volume, packaging, palletisation, grouping, storage…).",
@@ -795,7 +812,7 @@ en:{
   fc1:"About", fc2:"Our Markets", fc3:"Values", fc4:"References", fc5:"Contact",
 },
 es:{
-  nav_about:"Nosotros", nav_engagement:"Compromiso", nav_storage:"Almacenamiento", nav_deliveries:"Entregas", nav_laboratory:"Laboratorio", nav_ambition:"Ambición", nav_values:"Valores", nav_security:"Seguridad", nav_logistics:"Logística", nav_contact:"Contacto", nav_cta:"Contactarnos",
+  nav_about:"Nosotros", nav_engagement:"Compromiso", nav_storage:"Almacenamiento", nav_deliveries:"Entregas", nav_laboratory:"Calidad", nav_ambition:"Ambición", nav_values:"Valores", nav_security:"Seguridad", nav_logistics:"Logística", nav_contact:"Contacto", nav_cta:"Contactarnos",
   hero_title:"Intermediación comercial<br/>de <em>Productos Agroalimentarios</em>",
   hero_sub:"Soluciones globales y transversales de desarrollo comercial. El mejor nivel de productividad y fiabilidad en el espacio europeo, el Norte de África y los Emiratos Árabes Unidos.",
   hero_btn1:"Descubrir Westerfield", hero_btn2:"Contactarnos",
@@ -830,7 +847,7 @@ es:{
   s6_tag:"Logística", s6_title:"Nuestra <em>Logística</em>", s6_intro:"Capacidad para adaptarnos a las exigencias de los clientes.",
   s6_l1:"Volumen reducido o importante según las necesidades del cliente.",
   s6_l2:"Distintos tipos de acondicionamientos.",
-  s6_l3:"Paletización (80-120 / 100-120, Chep, LPR, Europa).",
+  s6_l3:"Paletización (80x120) y (100x120), Chep, LPR, Europa.",
   s6_l4:"Almacenamiento con temperatura dirigida según el producto.",
   s6_l5:"Relaciones duraderas con nuestros proveedores y clientes.",
   s6_l6:"Un equipo capaz de adaptarse a cualquier petición especial (volumen, acondicionamiento, paletización, agrupaje, almacenamiento…).",
@@ -855,7 +872,7 @@ es:{
   fc1:"Nosotros", fc2:"Nuestros Mercados", fc3:"Valores", fc4:"Referencias", fc5:"Contacto",
 },
 it:{
-  nav_about:"Chi siamo", nav_engagement:"Impegno", nav_storage:"Stoccaggio", nav_deliveries:"Consegne", nav_laboratory:"Laboratorio", nav_ambition:"Ambizione", nav_values:"Valori", nav_security:"Sicurezza", nav_logistics:"Logistica", nav_contact:"Contatto", nav_cta:"Contattaci",
+  nav_about:"Chi siamo", nav_engagement:"Impegno", nav_storage:"Stoccaggio", nav_deliveries:"Consegne", nav_laboratory:"Qualità", nav_ambition:"Ambizione", nav_values:"Valori", nav_security:"Sicurezza", nav_logistics:"Logistica", nav_contact:"Contatto", nav_cta:"Contattaci",
   hero_title:"Intermediazione commerciale<br/>di <em>Prodotti Agroalimentari</em>",
   hero_sub:"Soluzioni globali e trasversali di sviluppo commerciale. Il miglior livello di produttività e affidabilità nello spazio europeo, nel Nord Africa e negli Emirati Arabi Uniti.",
   hero_btn1:"Scoprire Westerfield", hero_btn2:"Contattaci",
@@ -890,7 +907,7 @@ it:{
   s6_tag:"Logistica", s6_title:"La Nostra <em>Logistica</em>", s6_intro:"Una capacità di adattarsi alle esigenze dei clienti.",
   s6_l1:"Volume ridotto o importante in base alle esigenze del cliente.",
   s6_l2:"Diverse tipologie di confezionamento.",
-  s6_l3:"Palettizzazione (80-120 / 100-120, Chep, LPR, Europa).",
+  s6_l3:"Palettizzazione (80x120) e (100x120), Chep, LPR, Europa.",
   s6_l4:"Stoccaggio a temperatura controllata secondo il prodotto.",
   s6_l5:"Relazioni durature con i nostri fornitori e clienti.",
   s6_l6:"Un team capace di adattarsi a qualsiasi richiesta speciale (volume, confezionamento, palettizzazione, groupage, stoccaggio…).",
