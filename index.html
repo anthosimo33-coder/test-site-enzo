@@ -82,6 +82,7 @@ section{padding:110px 6vw}
 .media-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:rgba(245,240,232,.3);font-size:10px;letter-spacing:.24em;text-transform:uppercase;pointer-events:none;text-align:center}
 .media-placeholder svg{width:34px;height:34px;opacity:.5;stroke:rgba(201,168,76,.4)}
 .media-16x9:has(img[src]:not([src=""])) .media-placeholder{display:none}
+.media-full{width:100%;height:auto;display:block}
 
 section{padding:130px 6vw}
 .sec-alt{background:var(--dark)}
@@ -566,10 +567,7 @@ footer{background:var(--bg);padding:72px 6vw 36px;border-top:1px solid var(--bor
     <div class="gold-line"></div>
   </div>
   <div class="labo-media-wrap reveal">
-    <figure class="media-16x9" data-section="laboratoire">
-      <img src="PHOTOS/Laboratoire.jpg" alt="Laboratoire" />
-      <div class="media-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="1"/><circle cx="9" cy="11" r="2"/><path d="m21 15-5-5L5 19"/></svg><span>Image 16:9</span></div>
-    </figure>
+    <img src="PHOTOS/Londres.jpg" alt="Londres" class="media-full" />
   </div>
 </section>
 
