@@ -164,9 +164,8 @@ section{padding:130px 6vw}
 .client-item:hover{background:var(--dark2);color:var(--gold)}
 
 /* LONDON BANNER */
-.london-banner{width:100%;height:55vh;min-height:380px;max-height:620px;display:block;overflow:hidden;line-height:0;background:var(--bg)}
-.london-banner img{width:100%;height:100%;object-fit:cover;display:block}
-@media(max-width:600px){.london-banner{height:40vh;min-height:280px}}
+.london-banner{width:100%;aspect-ratio:3510/2495;display:block;overflow:hidden;line-height:0;background:var(--bg)}
+.london-banner img{width:100%;height:100%;object-fit:cover;display:block;object-position:center}
 
 /* CTA */
 .cta-band{background:var(--gold);padding:36px 6vw;display:flex;align-items:center;justify-content:space-between;gap:40px}
@@ -233,7 +232,6 @@ footer{background:var(--bg);padding:72px 6vw 36px;border-top:1px solid var(--bor
 }
 /* iPad portrait & big phones */
 @media(max-width:768px){
-  .london-banner{height:45vh;min-height:320px}
   .hero-title{font-size:clamp(30px,5.5vw,46px)}
 }
 /* Phones */
@@ -255,7 +253,6 @@ footer{background:var(--bg);padding:72px 6vw 36px;border-top:1px solid var(--bor
   .short-section .text-col p{font-size:18px}
   .v-text,.objectif-card p,.resp-item p,.logistique-item p{font-size:16px}
   .decouvrir-grid,.valeurs-new,.resp-new,.securite-grid{gap:36px}
-  .london-banner{height:38vh;min-height:240px}
   .footer-brand img{height:46px}
   .nav-links a,.mobile-nav-links a{font-size:14px}
 }
@@ -265,7 +262,6 @@ footer{background:var(--bg);padding:72px 6vw 36px;border-top:1px solid var(--bor
   .nav-logo img{height:38px}
   .section-title{font-size:24px}
   .hero-title{font-size:30px}
-  .london-banner{height:32vh;min-height:200px}
 }
 </style>
 </head>
